@@ -1,0 +1,19 @@
+doctype xml
+rss[version='2.0'
+    xmlns:content='http://purl.org/rss/1.0/modules/content/']
+  channel
+    title= @title
+    link= @link
+    description= ' '
+    - if @image_url
+      image
+        url= @image_url
+        title= @image_title
+        link= @link
+    - @tweets.each do |tweet|
+      item
+        title= tweet.screen_name
+        link= tweet.url
+        description= tweet.description
+        author= tweet.author
+        pubDate= tweet.created_at

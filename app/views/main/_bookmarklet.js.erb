@@ -1,0 +1,50 @@
+javascript:void(function(){
+  <%# http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript %>
+  <%# without decode escape %>
+  var parameterByName = function (query, name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(query);
+    return results == null ? "" : results[1];
+  };
+  var rssUrl = function (path, query, root_url, url_id_hash) {
+    var search_pattern = /search\/?$/;
+    var list_pattern = /([a-zA-Z0-9_]+)\/lists\/([a-zA-Z0-9_]+)/;
+    var user_pattern = /([a-zA-Z0-9_]+)/;
+    var m;
+    if (m = path.match(search_pattern)) {
+      return root_url +
+        'feed/search?q=' +
+        parameterByName(query, 'q') +
+        '&url_id_hash=' +
+        url_id_hash;
+    }
+    if (m = path.match(list_pattern)) {
+      return root_url +
+        'feed/list?name=' +
+        m[0] +
+        '&slug=' +
+        m[1] +
+        '&url_id_hash=' +
+        url_id_hash;
+    }
+    if (m = path.match(user_pattern)) {
+      return root_url +
+        'feed/user?name=' +
+        m[0] +
+        '&url_id_hash=' +
+        url_id_hash;
+    }
+    return null;
+  };
+  var url = rssUrl(
+    location.pathname,
+    location.search,
+    "<%= root_url %>",
+    "<%= @user.url_id_hash %>"
+  );
+  if (!rssUrl) {
+    alert('Twitter Good RSS error: generate URL failed.');
+  }
+  location.href = url;
+})();

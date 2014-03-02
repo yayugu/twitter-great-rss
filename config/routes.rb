@@ -4,6 +4,7 @@ TwitterGreatRss::Application.routes.draw do
   scope :auth do
     get 'auth' => 'auth#auth'
     get 'callback' => 'auth#callback'
+    get 'logout' => 'auth#logout'
   end
 
   scope :feed do

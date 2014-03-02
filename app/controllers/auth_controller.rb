@@ -34,7 +34,16 @@ class AuthController < ApplicationController
       )
     end
 
-    #bookmarklet = URI.encode "javascript:void(function(){location.href = '#{base_url}/#{@id}' + location.pathname;})();"
+    if @user
+      session[:user_id] = @user.id
+    end
+
+    redirect_to root_url
+  end
+
+  def logout
+    reset_session
+    redirect_to root_url
   end
 
   private

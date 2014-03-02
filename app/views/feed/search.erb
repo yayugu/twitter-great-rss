@@ -1,0 +1,5 @@
+<%
+require 'uri'
+@title = "#{@query} / search / Twitter"
+@link = "http://twitter.com/search?q=#{URI::encode_www_form_component(@query)}"
+%><%= render partial: "rss" %>

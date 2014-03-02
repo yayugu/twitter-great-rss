@@ -1,0 +1,30 @@
+h1 Twitter Great RSS
+div
+
+  - if @user
+    div You can generate RSS with URL like:
+    ul
+      li #{root_url}feed/user?user=USERNAME&url_id_hash=#{@user.url_id_hash}
+      li #{root_url}feed/list?user=USERNAME&slug=LISTNAME&url_id_hash=#{@user.url_id_hash}
+      li #{root_url}feed/search?q=KEYWORD&url_id_hash=#{@user.url_id_hash}
+    div
+      | Bookmarklet is also available. → 
+      a href=bookmarklet_escape(render(partial: 'bookmarklet', formats: ['js']))
+        | Bookmark this Bookmarklet
+    br
+    div
+      == link_to "Logout", controller: "auth", action: "logout"
+
+  - else
+    div
+      == link_to "Sign in with twitter", controller: "auth", action: "auth"
+    div Generate RSS for:
+    ul
+      li user tweets
+      li list tweets
+      li search result tweets
+
+  br
+  div
+    | Code is available on 
+    a href="http://github.com/yayugu/twitter-great-rss" GitHub

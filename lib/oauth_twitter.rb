@@ -17,13 +17,6 @@ class OAuthTwitter
     )
   end
 
-  def get_and_json_parse(url, account)
-    body = OAuth::AccessToken.new(self.consumer, account.access_token, account.access_secret)
-      .get(url)
-      .body
-    JSON.parse(body)
-  end
-
   def consumer
     OAuth::Consumer.new(
       ENV['CONSUMER_KEY'],
