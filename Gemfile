@@ -5,9 +5,6 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-gem 'sqlite3'
-gem 'pg'
-
 gem 'slim'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -32,6 +29,11 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'pg'
+end
+
+group :development do
+  gem 'sqlite3'
 end
 
 # Use ActiveModel has_secure_password
