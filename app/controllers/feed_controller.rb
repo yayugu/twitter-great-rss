@@ -3,6 +3,14 @@ class FeedController < ApplicationController
 
   before_action :prepare_twitter_client
 
+  def home
+    res = @client.home(TWEET_COUNT)
+    render_error and return if res.error
+
+    @tweets = Tweet.tweets_from_hash_list(res.body)
+    render_rss
+  end
+
   def user
     res = @client.user(params[:name], TWEET_COUNT)
     render_error and return if res.error

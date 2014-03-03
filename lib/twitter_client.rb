@@ -7,6 +7,10 @@ class TwitterClient
     @access_token = OAuth::AccessToken.new(OAuthTwitter.new.consumer, access_token, access_secret)
   end
 
+  def home(count)
+    get_and_json_parse(home_sub_url(count))
+  end
+
   def user(name, count)
     get_and_json_parse(user_sub_url(name, count))
   end
@@ -22,6 +26,10 @@ class TwitterClient
   end
 
   private
+
+  def home_sub_url(count)
+    "/statuses/home_timeline.json?include_entities=true&count=#{count}&include_rts=true"
+  end
 
   def user_sub_url(name, count)
     "/statuses/user_timeline.json?screen_name=#{name}&include_entities=true&count=#{count}&include_rts=true"

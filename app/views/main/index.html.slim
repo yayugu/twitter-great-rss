@@ -4,6 +4,7 @@ div
   - if @user
     div You can generate RSS with URL like:
     ul
+      li #{root_url}feed/home?url_id_hash=#{@user.url_id_hash}
       li #{root_url}feed/user?user=USERNAME&url_id_hash=#{@user.url_id_hash}
       li #{root_url}feed/list?user=USERNAME&slug=LISTNAME&url_id_hash=#{@user.url_id_hash}
       li #{root_url}feed/search?q=KEYWORD&url_id_hash=#{@user.url_id_hash}
@@ -16,13 +17,14 @@ div
       == link_to "Logout", controller: "auth", action: "logout"
 
   - else
-    div
-      == link_to "Sign in with twitter", controller: "auth", action: "auth"
     div Generate RSS for:
     ul
+      li timeline tweets
       li user tweets
       li list tweets
       li search result tweets
+    div
+      == link_to "Sign in with twitter", controller: "auth", action: "auth"
 
   br
   div
