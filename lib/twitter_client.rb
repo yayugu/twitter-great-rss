@@ -16,7 +16,9 @@ class TwitterClient
   end
 
   def search(query, count)
-    get_and_json_parse(search_sub_url(query, count))['statuses']
+    response = get_and_json_parse(search_sub_url(query, count))
+    response.body = response.body['statuses']
+    response
   end
 
   private
@@ -34,10 +36,10 @@ class TwitterClient
   end
 
   def get_and_json_parse(sub_url)
-    body = @access_token
-      .get(api_url(sub_url))
-      .body
-    JSON.parse(body)
+    # Net::HTTPResponse
+    response = @access_token.get(api_url(sub_url))
+    body = JSON.parse(response.body)
+    TwitterAPIResponse.new(body, response.value)
   end
 
   def api_url(sub_url)
