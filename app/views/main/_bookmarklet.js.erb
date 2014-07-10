@@ -22,9 +22,9 @@ javascript:void(function(){
     if (m = path.match(list_pattern)) {
       return root_url +
         'feed/list?name=' +
-        m[0] +
-        '&slug=' +
         m[1] +
+        '&slug=' +
+        m[2] +
         '&url_id_hash=' +
         url_id_hash;
     }

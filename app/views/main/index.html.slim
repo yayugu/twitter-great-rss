@@ -5,8 +5,8 @@ div
     div You can generate RSS with URL like:
     ul
       li #{root_url}feed/home?url_id_hash=#{@user.url_id_hash}
-      li #{root_url}feed/user?user=USERNAME&url_id_hash=#{@user.url_id_hash}
-      li #{root_url}feed/list?user=USERNAME&slug=LISTNAME&url_id_hash=#{@user.url_id_hash}
+      li #{root_url}feed/user?name=USERNAME&url_id_hash=#{@user.url_id_hash}
+      li #{root_url}feed/list?name=USERNAME&slug=LISTNAME&url_id_hash=#{@user.url_id_hash}
       li #{root_url}feed/search?q=KEYWORD&url_id_hash=#{@user.url_id_hash}
     div
       | Bookmarklet is also available. → 
