@@ -3,7 +3,8 @@ class MarkupTweet
     def markup_tweet(tweet)
       text = tweet['text']
       entities = tweet['entities']
-      MarkupTweet::markup_media(text, entities)
+      extended_entities = tweet['extended_entities']
+      MarkupTweet::markup_media(text, entities, extended_entities)
       MarkupTweet::markup_urls(text, entities)
       MarkupTweet::markup_user_mentions(text, entities)
       MarkupTweet::markup_hashtags(text, entities)
@@ -11,10 +12,12 @@ class MarkupTweet
     end
 
     # see https://dev.twitter.com/docs/tweet-entities
-    def markup_media(text, entities)
-      return text unless entities['media']
-      entities['media'].each do |image|
-        text << "<div><a href='#{image['display_url']}'><img src='#{image['media_url']}' /></a></div>"
+    def markup_media(text, entities, extended_entities)
+      en = extended_entities && extended_entities['media'] ? extended_entities : entities
+      return text unless en['media']
+      en['media'].each do |media|
+        next unless media['type'] == 'photo'
+        text << "<div><a href='#{media['display_url']}'><img src='#{media['media_url']}' /></a></div>"
       end
       text
     end
