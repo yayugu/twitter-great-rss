@@ -11,7 +11,9 @@ div
     div
       | Bookmarklet is also available. → 
       a href=bookmarklet_escape(render(partial: 'bookmarklet', formats: ['js']))
-        | Bookmark this Bookmarklet
+        | Subscribe feed with Twitter Good RSS
+    div
+      b Notice: if you are using Firefox, you should access `about:config` and `secuirty.csp.enable` to be true
     br
     div
       == link_to "Logout", controller: "auth", action: "logout"
