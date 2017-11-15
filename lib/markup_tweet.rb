@@ -17,7 +17,8 @@ class MarkupTweet
       return text unless en['media']
       en['media'].each do |media|
         next unless media['type'] == 'photo'
-        text.gsub!(media['url'], "<div><a href='#{media['media_url']}'><img src='#{media['media_url']}' /></a></div>")
+        text.gsub!(media['url'], '')
+        text << "<div><a href='#{media['media_url']}'><img src='#{media['media_url']}' /></a></div>"
       end
       text
     end
