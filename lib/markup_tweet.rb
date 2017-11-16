@@ -52,6 +52,7 @@ class MarkupTweet
     def markup_quote(text, tweet)
       return text unless tweet['quoted_status']
       quoted_status = tweet['quoted_status']
+      text.gsub("https://twitter.com/#{quoted_status['user']['screen_name']}/status/#{quoted_status['id_str']}", '')
       "#{text}<blockquote>#{MarkupTweet::markup_author(quoted_status['text'], quoted_status)}</blockquote>"
     end
 
