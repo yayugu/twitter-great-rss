@@ -27,7 +27,7 @@ class MarkupTweet
 
     def markup_urls(text, entities)
       quoted_url = ''
-      if tweet['quoted_status']
+      if text['quoted_status']
         quoted_status = tweet['quoted_status']
         quoted_url = "https://twitter.com/#{quoted_status['user']['screen_name']}/status/#{quoted_status['id_str']}"
       end
