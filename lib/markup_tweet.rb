@@ -26,8 +26,18 @@ class MarkupTweet
     end
 
     def markup_urls(text, entities)
+      quoted_url = ''
+      if tweet['quoted_status']
+        quoted_status = tweet['quoted_status']
+        quoted_url = "https://twitter.com/#{quoted_status['user']['screen_name']}/status/#{quoted_status['id_str']}"
+      end
+
       entities['urls'].each do |url|
         new_url = url['expanded_url'] || url['url']
+        if new_url == quoted_url
+          text.gsub!(url['url'], '')
+          next
+        end
         text.gsub!(url['url'], "<a href='#{new_url}'>#{new_url}</a>")
       end
       text
@@ -52,7 +62,6 @@ class MarkupTweet
     def markup_quote(text, tweet)
       return text unless tweet['quoted_status']
       quoted_status = tweet['quoted_status']
-      text.gsub("https://twitter.com/#{quoted_status['user']['screen_name']}/status/#{quoted_status['id_str']}", '')
       "#{text}<blockquote>#{MarkupTweet::markup_author(quoted_status['text'], quoted_status)}</blockquote>"
     end
 
