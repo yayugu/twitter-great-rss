@@ -23,7 +23,7 @@ class Tweet
   end
 
   def description
-    " <img src='#{@hash['user']['profile_image_url']}' width='16px' height='16px' /> #{markupped_text} "
+    markupped_text
   end
 
   def created_at

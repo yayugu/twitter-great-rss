@@ -4,10 +4,12 @@ class MarkupTweet
       text = tweet['text']
       entities = tweet['entities']
       extended_entities = tweet['extended_entities']
-      MarkupTweet::markup_media(text, entities, extended_entities)
-      MarkupTweet::markup_urls(text, entities)
-      MarkupTweet::markup_user_mentions(text, entities)
-      MarkupTweet::markup_hashtags(text, entities)
+      text = MarkupTweet::markup_media(text, entities, extended_entities)
+      text = MarkupTweet::markup_urls(text, entities)
+      text = MarkupTweet::markup_user_mentions(text, entities)
+      text = MarkupTweet::markup_hashtags(text, entities)
+      text = MarkupTweet::markup_quote(text, tweet)
+      text = MarkupTweet::markup_author(text, tweet)
       text
     end
 
@@ -18,7 +20,7 @@ class MarkupTweet
       en['media'].each do |media|
         next unless media['type'] == 'photo'
         text.gsub!(media['url'], '')
-        text << "<div><a href='#{media['media_url']}'><img src='#{media['media_url']}' /></a></div>"
+        text << "<div><a href='#{media['expanded_url']}'><img src='#{media['media_url']}' /></a></div>"
       end
       text
     end
@@ -45,6 +47,16 @@ class MarkupTweet
         text.gsub!(/[\#＃♯]#{Regexp.quote hashtag_text}/, "<a href='http://twitter.com/search?q=%23#{hashtag_text}'>##{hashtag_text}</a>")
       end
       text
+    end
+
+    def markup_quote(text, tweet)
+      return text unless tweet['quoted_status']
+      quoted_status = tweet['quoted_status']
+      "#{text}<blockquote>#{MarkupTweet::markup_author(quoted_status['text'], quoted_status)}</blockquote>"
+    end
+
+    def markup_author(text, tweet)
+      " <img src='#{tweet['user']['profile_image_url']}' width='16px' height='16px' /> #{text} "
     end
   end
 end
