@@ -5,7 +5,7 @@ class MarkupTweet
       entities = tweet['entities']
       extended_entities = tweet['extended_entities']
       text = MarkupTweet::markup_media(text, entities, extended_entities)
-      text = MarkupTweet::markup_urls(text, entities)
+      text = MarkupTweet::markup_urls(text, tweet)
       text = MarkupTweet::markup_user_mentions(text, entities)
       text = MarkupTweet::markup_hashtags(text, entities)
       text = MarkupTweet::markup_quote(text, tweet)
@@ -25,13 +25,13 @@ class MarkupTweet
       text
     end
 
-    def markup_urls(text, entities)
+    def markup_urls(text, tweet)
+      entities = tweet['entities']
       quoted_url = ''
-      if text['quoted_status']
+      if tweet['quoted_status']
         quoted_status = tweet['quoted_status']
         quoted_url = "https://twitter.com/#{quoted_status['user']['screen_name']}/status/#{quoted_status['id_str']}"
       end
-
       entities['urls'].each do |url|
         new_url = url['expanded_url'] || url['url']
         if new_url == quoted_url
