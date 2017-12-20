@@ -21,6 +21,15 @@ class FeedController < ApplicationController
     render_rss
   end
 
+  def user_fav
+    res = @client.user_fav(params[:name], TWEET_COUNT)
+    render_error and return if res.error
+
+    @name = "#{params[:name]}"
+    @tweets = Tweet.tweets_from_hash_list(res.body)
+    render_rss
+  end
+
   def list
     res = @client.list(params[:name], params[:slug], TWEET_COUNT)
     render_error and return if res.error

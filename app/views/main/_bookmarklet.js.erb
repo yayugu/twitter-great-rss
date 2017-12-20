@@ -11,6 +11,7 @@ javascript:void(function(){
     var search_pattern = /search\/?$/;
     var list_pattern = /([a-zA-Z0-9_]+)\/lists\/([a-zA-Z0-9_]+)/;
     var user_pattern = /([a-zA-Z0-9_]+)/;
+    var user_fav_pattern = /([a-zA-Z0-9_]+)\/likes/;
     var m;
     if (m = path.match(search_pattern)) {
       return root_url +
@@ -31,6 +32,13 @@ javascript:void(function(){
     if (m = path.match(user_pattern)) {
       return root_url +
         'feed/user?name=' +
+        m[0] +
+        '&url_id_hash=' +
+        url_id_hash;
+    }
+    if (m = path.match(user_fav_pattern)) {
+      return root_url +
+        'feed/user/fav?name=' +
         m[0] +
         '&url_id_hash=' +
         url_id_hash;

@@ -15,6 +15,10 @@ class TwitterClient
     get_and_json_parse(user_sub_url(name, count))
   end
 
+  def user_fav(name, count)
+    get_and_json_parse(user_fav_sub_url(name, count))
+  end
+
   def list(name, slug, count)
     get_and_json_parse(list_sub_url(name, slug, count))
   end
@@ -33,6 +37,10 @@ class TwitterClient
 
   def user_sub_url(name, count)
     "/statuses/user_timeline.json?screen_name=#{name}&include_entities=true&count=#{count}&include_rts=true"
+  end
+
+  def user_fav_sub_url(name, count)
+    "/favorites/list.json?screen_name=#{name}&include_entities=true&count=#{count}"
   end
 
   def list_sub_url(name, slug, count)

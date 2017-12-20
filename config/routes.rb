@@ -10,6 +10,7 @@ TwitterGreatRss::Application.routes.draw do
   scope :feed do
     get 'home' => 'feed#home'
     get 'user' => 'feed#user'
+    get 'user/fav' => 'feed#user_fav'
     get 'list' => 'feed#list'
     get 'search' => 'feed#search'
   end
