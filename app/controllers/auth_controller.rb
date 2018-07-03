@@ -23,16 +23,10 @@ class AuthController < ApplicationController
     end
 
     twitter_user_id = oauth_twitter.user_id(@access_token)
-
-    @user = User.where(twitter_id: twitter_user_id).first
-
-    unless @user
-      @user = User.create!(
-        twitter_id: twitter_user_id,
-        twitter_access_token: @access_token.token,
-        twitter_access_secret: @access_token.secret,
-      )
-    end
+    @user = User.where(twitter_id: twitter_user_id).first_or_initialize
+    @user.twitter_access_token = @access_token.token
+    @user.twitter_access_secret= @access_token.secret
+    @user.save!
 
     if @user
       session[:user_id] = @user.id
