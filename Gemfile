@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.8'
 
@@ -35,6 +33,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'dotenv-rails'
 end
 
 # Use ActiveModel has_secure_password
