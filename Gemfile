@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
 
 gem 'slim'
 
@@ -49,7 +49,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
 gem 'oauth'
 gem 'puma'
+gem 'bootsnap'
 
