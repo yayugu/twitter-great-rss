@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.5.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 
@@ -33,7 +35,6 @@ end
 
 group :development do
   gem 'sqlite3'
-  gem 'dotenv-rails'
   gem 'listen'
 end
 
@@ -52,4 +53,5 @@ end
 gem 'oauth'
 gem 'puma'
 gem 'bootsnap'
+gem 'dotenv-rails'
 
