@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.8'
+gem 'rails', '~> 5.2.0'
 
 gem 'slim'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'#, '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'#, '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'#, '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -35,6 +35,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'listen'
 end
 
 # Use ActiveModel has_secure_password
@@ -49,6 +50,8 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
 gem 'oauth'
 gem 'puma'
+gem 'bootsnap'
+gem 'dotenv-rails'
+

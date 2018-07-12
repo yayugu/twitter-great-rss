@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216143921) do
+ActiveRecord::Schema.define(version: 2014_02_16_143921) do
 
-  create_table "users", force: true do |t|
-    t.string   "twitter_id"
-    t.string   "twitter_access_token"
-    t.string   "twitter_access_secret"
-    t.string   "url_id_hash"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "users", force: :cascade do |t|
+    t.string "twitter_id"
+    t.string "twitter_access_token"
+    t.string "twitter_access_secret"
+    t.string "url_id_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["twitter_id"], name: "index_users_on_twitter_id"
+    t.index ["url_id_hash"], name: "index_users_on_url_id_hash"
   end
-
-  add_index "users", ["twitter_id"], name: "index_users_on_twitter_id"
-  add_index "users", ["url_id_hash"], name: "index_users_on_url_id_hash"
 
 end
