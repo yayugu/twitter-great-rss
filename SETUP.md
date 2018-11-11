@@ -1,5 +1,5 @@
 # Require
-* Ruby 2.5.1
+* Ruby 2.5.3
 
 # Setup locally
 1. Access `https://apps.twitter.com/` in browser.
