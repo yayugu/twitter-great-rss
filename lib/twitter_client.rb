@@ -32,23 +32,23 @@ class TwitterClient
   private
 
   def home_sub_url(count)
-    "/statuses/home_timeline.json?include_entities=true&count=#{count}&include_rts=true"
+    "/statuses/home_timeline.json?include_entities=true&count=#{count}&include_rts=true&tweet_mode=extended"
   end
 
   def user_sub_url(name, count)
-    "/statuses/user_timeline.json?screen_name=#{name}&include_entities=true&count=#{count}&include_rts=true"
+    "/statuses/user_timeline.json?screen_name=#{name}&include_entities=true&count=#{count}&include_rts=true&tweet_mode=extended"
   end
 
   def user_fav_sub_url(name, count)
-    "/favorites/list.json?screen_name=#{name}&include_entities=true&count=#{count}"
+    "/favorites/list.json?screen_name=#{name}&include_entities=true&count=#{count}&tweet_mode=extended"
   end
 
   def list_sub_url(name, slug, count)
-    "/lists/statuses.json?slug=#{slug}&owner_screen_name=#{name}&include_entities=true&count=#{count}&include_rts=true"
+    "/lists/statuses.json?slug=#{slug}&owner_screen_name=#{name}&include_entities=true&count=#{count}&include_rts=true&tweet_mode=extended"
   end
 
   def search_sub_url(query, count)
-    "/search/tweets.json?q=#{URI::encode_www_form_component(query)}&include_entities=true&count=#{count}"
+    "/search/tweets.json?q=#{URI::encode_www_form_component(query)}&include_entities=true&count=#{count}&tweet_mode=extended"
   end
 
   def get_and_json_parse(sub_url)

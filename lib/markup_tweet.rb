@@ -1,7 +1,8 @@
 class MarkupTweet
   class << self
     def markup_tweet(tweet)
-      text = tweet['text']
+      retweet = tweet['retweeted_status']
+      text = retweet ? "RT @#{retweet['user']['screen_name']} #{retweet['full_text']}" : tweet['full_text']
       entities = tweet['entities']
       extended_entities = tweet['extended_entities']
       text = MarkupTweet::markup_media(text, entities, extended_entities)
@@ -62,7 +63,7 @@ class MarkupTweet
     def markup_quote(text, tweet)
       return text unless tweet['quoted_status']
       quoted_status = tweet['quoted_status']
-      "#{text}<blockquote>#{MarkupTweet::markup_author(quoted_status['text'], quoted_status)}</blockquote>"
+      "#{text}<blockquote>#{MarkupTweet::markup_author(quoted_status['full_text'], quoted_status)}</blockquote>"
     end
 
     def markup_author(text, tweet)
