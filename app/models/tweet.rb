@@ -19,7 +19,8 @@ class Tweet
   end
 
   def url
-    "https://twitter.com/#{screen_name}/status/#{@hash['id']}"
+    status = retweeted_status || hash
+    "https://twitter.com/#{status['user']['screen_name']}/status/#{status['id']}"
   end
 
   def description
@@ -32,5 +33,9 @@ class Tweet
 
   def author
     @hash['source'].gsub(/<\/?[^>]*>/, "")
+  end
+
+  def retweeted_status
+    @hash['retweeted_status']
   end
 end
