@@ -19,7 +19,7 @@ class Tweet
   end
 
   def url
-    status = retweeted_status || hash
+    status = retweeted_status || @hash
     "https://twitter.com/#{status['user']['screen_name']}/status/#{status['id']}"
   end
 
