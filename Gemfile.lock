@@ -102,7 +102,7 @@ GEM
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
-    oauth (0.5.4)
+    oauth (0.5.5)
     pg (1.0.0)
     puma (3.11.4)
     racc (1.6.0)
